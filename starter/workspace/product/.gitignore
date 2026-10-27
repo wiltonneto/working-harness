@@ -1,0 +1,13 @@
+.local/
+.DS_Store
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.sqlite*
+*.db
+node_modules/
+.venv/
