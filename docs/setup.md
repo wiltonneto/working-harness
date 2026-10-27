@@ -22,7 +22,9 @@ git -C "$harness_workspace/cos" init -b main
 git -C "$harness_workspace/product" init -b main
 ```
 
-Do not initialize the enclosing workspace as a repository. The template distribution has one history for convenient reuse; operational CoS and product have independent histories. Nothing here creates a remote, chooses a license, pushes, installs hooks, or publishes.
+Do not initialize the enclosing workspace as a repository. The template distribution has one history for convenient reuse; operational CoS and product have independent histories. Nothing here creates a remote, selects licensing for your own product, pushes, installs hooks, or publishes.
+
+The harness is provided under [MIT](../LICENSE). Each starter repo includes a `HARNESS_LICENSE` copy so the notice survives separate copying and Git histories. Preserve it for inherited harness files; choose licensing for your own product and operating content separately. The validators check that the notices match the distribution license. No copyright owner or rights for a new company's content are inferred from this template.
 
 Review and commit the initial files in each new repo using your own local Git identity when ready. The worktree workflow requires an initial commit. Existing projects should receive only the reviewed instruction/workflow files they need; reconcile their existing law instead of overwriting it with this starter.
 
@@ -70,4 +72,4 @@ Before adding a schedule later, obtain that separate integration authority, fill
 
 ## 5. Keep reuse clean
 
-Operational records may be private even when they contain no credentials. Reuse the clean distribution, not a copy of your company's filled workspace. Inspect Git history as well as current files before any later publication. License selection is still the owner's decision.
+Operational records may be private even when they contain no credentials. Reuse the clean distribution, not a copy of your company's filled workspace. Inspect Git history as well as current files before any later publication. Preserve the harness's MIT notice; licensing and publication of your own content remain your decision.

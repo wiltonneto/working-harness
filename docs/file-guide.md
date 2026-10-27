@@ -4,6 +4,8 @@ The empty files are deliberate homes for the **new company's** state, not unfini
 
 Paths below are relative to `starter/workspace/`. CoS owns coordination; product owns code-dependent truth. Dated records preserve the trail, while durable state is kept current. A role listed as owner still needs task authority and actual runtime permissions to write.
 
+Both [cos/HARNESS_LICENSE](../starter/workspace/cos/HARNESS_LICENSE) and [product/HARNESS_LICENSE](../starter/workspace/product/HARNESS_LICENSE) preserve the distribution's [MIT license](../LICENSE) when the repos are copied separately. These notices cover inherited harness files, not a new company's independently authored content. Keep them; the template maintainer updates all notice copies together if licensing is deliberately revised.
+
 ## CoS current state and continuity
 
 | File | Purpose / expected contents | Owner | Update trigger |

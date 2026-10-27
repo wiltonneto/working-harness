@@ -2,7 +2,7 @@
 
 A work harness for a **solo founder running a digital company** with Claude Code or Codex. The founder owns direction and judgment. **The chief of staff coordinates; product repositories execute.**
 
-CoS owns priorities, decisions, research, and the daily plan. Products own specs, code, tests, and current truth. A written baton carries work into product; evidence returns it to the coordination queue. Files carry context between sessions and tools.
+CoS owns priorities, decisions, research, and the daily plan; products own specs, code, tests, and current truth. A written baton carries work into product, and evidence returns it to the queue. Files preserve context between sessions.
 
 ## Operating principles
 
@@ -30,42 +30,58 @@ starter/workspace/
   product/                  Execution repository starter
 ```
 
-Clone or use **Use this template**, and choose an unused workspace destination:
+Prerequisites: Git, Python 3.9+, and either Claude Code or Codex already installed and authenticated. This repository installs the harness files, not the CLI, a model, an application server, or scheduled jobs.
+
+Run from a directory that should contain both new folders. Use unused destination names; the guarded block stops rather than copying over an existing workspace:
 
 ```sh
-git clone https://github.com/wiltonneto/working-harness.git
-cd working-harness
-cp -R starter/workspace ../my-workspace
-git -C ../my-workspace/cos init -b main
-git -C ../my-workspace/product init -b main
+(
+  set -eu
+  git clone https://github.com/wiltonneto/working-harness.git
+  cd working-harness
+  python3 tools/validate.py
+  python3 tools/check_register.py
+  test ! -e ../my-workspace
+  cp -R starter/workspace ../my-workspace
+  git -C ../my-workspace/cos init -b main
+  git -C ../my-workspace/product init -b main
+  python3 tools/validate.py --workspace ../my-workspace
+)
 ```
 
-Fill CoS `STATE.md` and product `PROJECT.md`, then review and commit each new repo's initial files. Run `claude` or `codex` inside `cos/` for coordination or `product/` for execution:
+This leaves sibling `working-harness/` (clean reference) and `my-workspace/{cos,product}` (independent operating repos). Do not initialize the enclosing workspace as one repo. The starter copies preserve the harness's MIT notice; choose licensing for your own product separately.
 
-> Read AGENTS.md and the canonical instructions it links to. Report your role, authority, and missing configuration before changing anything.
+Configure `cos/STATE.md` first, then `product/PROJECT.md`, product principles, and CoS priorities/hypotheses/registry. Review and commit each fresh repo's initial files before task worktrees. Keep spend and external/production authority disabled until explicitly extended. [Setup](docs/setup.md) covers worktrees, existing projects, and additional products.
 
-Thin `AGENTS.md`/`CLAUDE.md` entrypoints share neutral instructions. Operational CoS and product have separate histories. [Setup](docs/setup.md) covers worktrees and additional products.
+## First use
+
+From the same parent directory, choose one read-only bootstrap:
+
+```sh
+(cd my-workspace/cos && claude --permission-mode plan)
+# or
+codex -C my-workspace/cos --sandbox read-only --ask-for-approval on-request
+```
+
+For a separate execution session, replace `cos` with `product`. Both use thin `AGENTS.md`/`CLAUDE.md` entrypoints pointing to the shared contract. Start with:
+
+> Read AGENTS.md, the linked shared agreement, and INSTRUCTIONS.md. Report the files read, your role, authority, and missing configuration. Do not modify anything.
+
+Once bootstrap and configuration are reviewed, allow only the local edits needed for the assigned task. Use a fresh owned worktree per session and keep approval prompts enabled; no bypass/full-access mode is needed.
 
 ## Why the empty files exist
 
-They provide homes for **your company's** state without invented history or inherited permissions. Fill them as work earns it. The [complete guide](docs/file-guide.md) covers every starter file, contents, owner, and update trigger.
+They are known homes for your company's state, without invented history or inherited permissions. Fill them when real events occur. The [file guide](docs/file-guide.md) gives every file's expected contents, owner, and update trigger.
 
-| File(s) | What belongs there | Owner / when updated |
-| --- | --- | --- |
-| CoS `STATE.md` | Stage, risk, owner, time zone, delegation, ceilings | Human ratifies; CoS updates at setup or changed risk/authority |
-| `priorities.md`, `BACKLOG.md`, `ROADMAP.md` | Now; ranked owned work; forward outcomes and gates | CoS when evidence or direction changes |
-| `HYPOTHESES.md` | Beliefs, unknowns, contrary evidence, next tests | CoS after evidence; human rules strategic changes |
-| `PRODUCTS.md`, `PARKING_LOT.md` | Repo map; deferred ideas with revival triggers | CoS when products or deferrals change |
-| Both repos' `MEMORY.md`, `session-log.md` | Scoped durable pointers; dated outcomes, omissions, next actions | Respective role after a lesson / at session close |
-| CoS `logs/decisions.md` | Why an actual ruling or delegated call was made | Authorized session through register door, per call |
-| **CoS `logs/error-log.md`** | **Failures, surprises, near-misses, cause/unknown, class, lesson, guard/owner** | **Every role after an event; CoS reviews classes** |
-| `logs/backlog-inbox.md` | Result facts, improvement proposals, acknowledgements | Authorized session through register door, per receipt |
-| `logs/job-runs.md` | Start/end/state, output, usage, recovery owner | External runner if later configured; starts empty |
-| Product `PROJECT.md`, `ARCHITECTURE.md` | Real commands/environments; map into actual code | Product at setup or tooling/code-structure changes |
-| `STATUS.md` | Verified current build/environment/evidence/limits | Product when reality changes |
-| `strategy/PRODUCT_PRINCIPLES.md` | This product's own rules and experience bar | Human/product when intent is established or revised |
-| `strategy/HUMAN_TEST_QUEUE.md` | Agent-checked build, remaining human judgment, actual verdict | Product registers; human supplies verdict |
-| Content directories and `templates/` | Dated batons, research, daily artifacts, specs, as-built and receipts | The owning role when the corresponding event happens |
+| Files | Purpose / who updates them |
+| --- | --- |
+| CoS `STATE.md`; `priorities.md`, `BACKLOG.md`, `ROADMAP.md` | Authority/risk; now, ranked work, forward arc. Human ratifies authority; CoS updates when evidence/direction changes. |
+| `HYPOTHESES.md`, `PRODUCTS.md`, `PARKING_LOT.md` | Beliefs/tests, repo map, deferred ideas/triggers. CoS maintains as these change. |
+| Both repos' `MEMORY.md`, `session-log.md` | Scoped lesson pointers and dated outcomes/next actions. Each role writes after learning/at close. |
+| CoS `logs/decisions.md`, **`error-log.md`**, `backlog-inbox.md` | Rulings, failures/lessons, and result/improvement facts. Authorized sessions append through the register door; CoS reviews and ranks. |
+| `logs/job-runs.md` | Start/finish/state/usage, written by an external runner only if later configured. |
+| Product `PROJECT.md`, `ARCHITECTURE.md`, `STATUS.md` | Commands/environment, code map, verified truth. Product updates at setup or relevant changes. |
+| Product `strategy/`; content directories and templates | Product principles, human judgments; batons, research, daily outputs, specs and receipts. The owning role fills the appropriate shape per event. |
 
 ## Logging must improve the harness
 
@@ -77,31 +93,20 @@ Use the [error-entry template](starter/workspace/cos/templates/error-entry.md) a
 
 ## Evening work and the morning digest
 
-These [portable contracts](starter/workspace/cos/system/jobs/README.md) extend work beyond the founder's working day:
+The [portable contracts](starter/workspace/cos/system/jobs/README.md) describe:
 
-| Job | Useful work | Morning input |
-| --- | --- | --- |
-| Evening review | Parse error classes into improvements; recheck/reprioritize backlog within delegation; finish clearly authorized, reversible, verifiable low-risk CoS tasks | Proposed versus verified fixes, queue changes, completed tasks, decisions/blocks |
-| Deep research | A founder-requested question or proactively justified study tied to a real decision; CoS chooses depth, sources, limits, and stopping point | Evidence, contrary findings, synthesis, recommendation, uncertainty |
-| Morning compile | Reconcile outputs with current truth and actual run states | One short digest and today's plan; detailed artifacts linked |
+- **Evening review:** error classes -> improvements; evidence-based backlog triage; qualified low-risk CoS tasks.
+- **Deep research:** requested or proactively justified studies that earn depth for a real decision.
+- **Morning compile:** one digest of verified outcomes, research implications, and judgments still owed.
 
-**Schedules and runners are not installed.** The [configuration template](starter/workspace/cos/system/jobs/job-config.template.md) starts disabled. An external runner must supply scheduling/time zone, permissions, usage limits, serialization, liveness/recovery, and separately authorized delivery. Those integrations are not included.
+**No schedules or runners are installed.** The [config template](starter/workspace/cos/system/jobs/job-config.template.md) starts disabled. The external runner must enforce permissions, usage, serialization, liveness/recovery, and separately authorized delivery. Every task still needs authority; an absent human does not approve spend, deploys, access changes, messages, or publishing. Product stays read-only in these evening presets.
 
-An absent human does not approve deployment, spend, access changes, messages, or publishing. Per-task authority still applies; missing authority or a required human ruling stops that lane. Product stays read-only in these evening presets. Cloning creates no jobs or credentials.
+## First task
 
-## One cycle
-
-Fictional example: a reading-list app loses completion state. CoS scopes a baton; product fixes, verifies, and returns evidence, logging the missing check. Evening review turns the recurring class into an owned guard improvement; product work remains a baton. Justified research feeds morning judgment. The founder gets one digest of verified outcomes and decisions owed. [Full cycle](docs/work-cycle.md).
+Start documentation-only: CoS writes a bounded baton for a five-step manual-verification checklist for the product idea in `PROJECT.md`. Product creates the checklist with expected outcomes, assumptions and limits, verifies its links, and returns a receipt; CoS updates the queue. No build, installation, deployment, paid call, or fabricated incident is needed. [Full work cycle](docs/work-cycle.md).
 
 ## Limits and checks
 
 Keep this clean distribution separate from operational records. Instructions are not access controls; real commands, principles, permissions, release gates, and jobs require configuration. Both CLI read paths were tested on macOS; see [compatibility](docs/compatibility.md).
 
-Python 3.9+ for the helpers:
-
-```sh
-python3 tools/validate.py
-python3 tools/check_register.py
-```
-
-**License not yet selected.** Public availability does not grant an open-source license.
+Licensed under the [MIT License](LICENSE). Preserve the copyright and permission notice when copying the harness.

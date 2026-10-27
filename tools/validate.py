@@ -32,7 +32,7 @@ def check_tree(root):
         if not path.is_file():
             continue
         count += 1
-        if path.suffix not in (".md", ".py") and path.name != ".gitignore":
+        if path.suffix not in (".md", ".py") and path.name not in (".gitignore", "LICENSE", "HARNESS_LICENSE"):
             errors.append("unexpected file type: " + str(path.relative_to(root)))
             continue
         try:
@@ -92,9 +92,12 @@ def check_workspace(workspace):
             errors.append("shared canonical route diverges for " + role)
         if entry.stat().st_size > 1000:
             errors.append("entrypoint is no longer thin for " + role)
-        for required in ["INSTRUCTIONS.md", "CLAUDE.md", "MEMORY.md", "session-log.md", ".gitignore"]:
+        for required in ["INSTRUCTIONS.md", "CLAUDE.md", "MEMORY.md", "session-log.md", ".gitignore", "HARNESS_LICENSE"]:
             if not (workspace / role / required).is_file():
                 errors.append("missing " + role + "/" + required)
+    notices = [workspace / role / "HARNESS_LICENSE" for role in ("cos", "product")]
+    if all(path.is_file() for path in notices) and notices[0].read_bytes() != notices[1].read_bytes():
+        errors.append("starter harness license notices differ")
     return errors
 
 
@@ -106,6 +109,15 @@ def main():
     workspace = root if args.workspace else root / "starter/workspace"
     errors, counts = check_tree(root)
     errors.extend(check_workspace(workspace))
+    if not args.workspace:
+        license_path = root / "LICENSE"
+        if not license_path.is_file():
+            errors.append("missing distribution LICENSE")
+        else:
+            for role in ("cos", "product"):
+                notice = workspace / role / "HARNESS_LICENSE"
+                if notice.is_file() and notice.read_bytes() != license_path.read_bytes():
+                    errors.append(role + " harness notice differs from distribution LICENSE")
     if errors:
         print("FAIL\n" + "\n".join(errors), file=sys.stderr)
         return 1
