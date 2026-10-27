@@ -13,7 +13,7 @@ Read [PROJECT.md](PROJECT.md), [STATUS.md](STATUS.md), [ARCHITECTURE.md](ARCHITE
 3. Implement in your owned worktree. Use only configured project commands and authorized resources in PROJECT. Diagnose failures; never classify a failing test as stale without evidence.
 4. Run focused checks, the configured broader gate, and real-surface verification where relevant. Record revision and environment. Mark unavailable or omitted checks explicitly.
 5. Write the [as-built](docs/AS_BUILT_TEMPLATE.md), update STATUS in the same change when possible, and create a [human test entry](strategy/HUMAN_TEST_QUEUE.md) for judgment only a human can provide. A LANDED change is not automatically LIVE or human accepted.
-6. Save a [return receipt](receipts/_TEMPLATE.md), then file facts using the canonical CoS register door described in the [coordination bridge](docs/COORDINATION.md). File relevant failure classes separately. CoS owns rank, rulings, and shared-register commits.
+6. Save a [return receipt](receipts/_TEMPLATE.md), then file facts using the canonical CoS register door described in the [coordination bridge](docs/COORDINATION.md). Log failures, surprises, and near-misses using the shared [error-entry body](../cos/templates/error-entry.md) and [learning loop](../cos/system/learning-loop.md), even when the fix must wait. CoS owns rank, rulings, and shared-register commits.
 7. Update the session log and durable context pointers. Complete authorized next steps; leave a precise blocker and next invocation for anything you cannot finish.
 
 ## Canonical homes

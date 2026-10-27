@@ -12,6 +12,7 @@ Status: UNCONFIGURED. Owner: assign during setup. No operational authority can b
 - Paid provider ceiling: zero; subscription usage is still subject to the user's available allowance.
 - Project-specific standing authorizations: none. Record actor, action, scope, ceiling, rollback, and revocation condition for any extension.
 - Unattended work: disabled. No scheduler or permission configuration is installed.
+- Optional job configuration: none; use [the contract template](system/jobs/job-config.template.md) before proposing an external runner. Define per-task authority and subscription invocation/time allowance separately from the zero paid-API ceiling. Evening CoS presets keep product repositories read-only.
 - Next review trigger: first external user, revenue, sensitive dataset, public launch, or other material change in risk.
 
 Update current state here. Record why a change was adopted in the decisions register. Policies do not override task-specific restrictions or runtime permissions.

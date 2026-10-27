@@ -12,6 +12,17 @@ Owner: one named CoS writer. File the filled version under daily with a real dat
 - Tracking (a few meaningful measurements, with prior values):
 - Proposed plan and depth choice:
 
+## Overnight inputs
+
+- Run IDs and observed states: completed / partial / failed / blocked / skipped / unknown.
+- Error classes reviewed -> proposed backlog improvements -> fixes actually verified:
+- Backlog premises corrected, priority changes and reasons, qualified tasks completed:
+- Research requested/proactively selected, decision it informs, key finding/contrary evidence, confidence:
+- Human decisions still needed (evidence, recommendation, deadline):
+- Usage/limits, missing inputs, and next actions under existing authority:
+
+Link each dated output and [job run record](../logs/job-runs.md). Suggested work is not completed work; missing output is not proof of a successful or unstarted job. This template creates artifacts only, not email or other delivery.
+
 ## Today's spine
 
 | Task / baton | Owner / worktree | Current state and evidence | Shared resources | Next action / blocker |

@@ -31,6 +31,7 @@ Review and commit the initial files in each new repo using your own local Git id
 - Fill CoS STATE: purpose, human owner, risk stage, time zone, boundaries, authority, and ceilings.
 - Fill CoS PRODUCTS, priorities, hypotheses, and the product's principles. Start from the new project's facts.
 - Fill product PROJECT: source map, actual commands, allowed environments, checks, review process, and any later release gates.
+- Use the [file guide](file-guide.md) for what each empty record expects and when to fill it. Keep logs and job outputs empty until actual events occur; configure the operating principles separately from the new product's own principles.
 - Keep zero spend and no external/production authority until explicitly extended. This starter does not inherit privileges from the system it was extracted from.
 - For a second product, copy another clean starter from the distribution, register it in PRODUCTS and WORKSPACE, and adjust product-specific references. The sibling `../cos` contract stays shared; do not clone its policy into each product.
 
@@ -58,6 +59,14 @@ These commands create local branches and worktrees; run them only for an assigne
 Task product worktrees call `../cos/system/register.py` in the canonical CoS checkout. Its lock protects register appends only. Coordinate Git operations and writes to other shared files separately. CoS worktrees must also use the canonical door, rather than appending records on branches to merge later.
 
 At close, preserve changes and review ignored state before any cleanup. No automatic worktree deletion, main merge, deploy, or scheduled job is configured.
+
+For failures or near-misses, use the shared [error-entry shape](../starter/workspace/cos/templates/error-entry.md) and [learning loop](../starter/workspace/cos/system/learning-loop.md). A later evening review can consume those records into owned improvements; logging alone does not close the loop.
+
+## Optional external cadence
+
+The [job contracts and configuration template](../starter/workspace/cos/system/jobs/README.md) describe evening error/backlog review, qualified CoS execution, requested or justified deep research, and morning compilation. They are not runnable scheduler definitions. No external job is created by copying these files.
+
+Before adding a schedule later, obtain that separate integration authority, fill the disabled job config, implement actual runner permissions/serialization/liveness/usage controls, and inspect a manual first cycle including a failure and morning handoff. Record per-task authority; product stays read-only in the CoS evening presets. A missing human, a backlog item, or a filled template cannot authorize spend, deployment, access changes, contact, or publishing.
 
 ## 5. Keep reuse clean
 

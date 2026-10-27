@@ -22,3 +22,15 @@ The handoff is complete when implementation evidence has reached the queue and C
 If the CoS write is blocked, product leaves its receipt PENDING and names the exact operation, target, reason, and next action. If a check fails, it reports the measured result. If product evidence refutes the strategic premise, CoS changes the plan instead of reissuing the old baton.
 
 Use [setup](setup.md) for the actual directory and worktree commands. Use the [bridge](../starter/workspace/product/docs/COORDINATION.md) for register invocation and uncertain-outcome recovery.
+
+## Optional evening and next-morning continuation
+
+This continuation is also fictional. It assumes a separately approved external runner and per-task scope have been configured; the repository installs none. Use the existing [job contracts](../starter/workspace/cos/system/jobs/README.md), not a second copy of their rules.
+
+1. **Review the failure class.** The evening CoS reviewer reads the persistence error and its linked regression test. If that enforcer already covers the class, it records the evidence and does not manufacture a new improvement. If another verified path has the same gap, it links the occurrences into a class review and proposes an owned backlog item with a falsifiable guard test.
+2. **Recheck the queue.** The original symptom is no longer a blocker because the as-built proves the local fix. CoS corrects stale status and re-ranks only within recorded delegation. Any new product-code guard becomes a baton, not a CoS overnight edit.
+3. **Execute qualified small work.** A separately listed, authorized CoS task such as correcting an evidence-stale queue entry can finish tonight if ownership, rollback, and verification are clear. An unresolved taste/risk decision is left for the founder. “Easy” and “human asleep” are not permission.
+4. **Research for a real morning decision.** Suppose the founder requested a comparison of two persistence approaches, or CoS identifies that this unresolved choice blocks the next approved milestone. CoS explains why depth is worth the allowance and why the topic does not need live taste judgment. Within authorized sources and usage, research produces primary evidence, contrary findings, synthesis, limits, and the decision it informs. Without that delegation/access, it leaves a scoped proposal instead.
+5. **Compile once for the founder.** Morning compile reads actual run states and artifacts. Its digest says which error class is enforced versus merely proposed, which queue premises changed, which tasks really finished, what research changes, and which ruling remains. It links detail and proposes the next owned actions. It does not invent a successful night from a missing output or send a message without separate delivery authority.
+
+The learning loop ends with a verified mechanism or explicit owned deferral, plus corrected read paths. An error entry, a review memo, and a backlog proposal alone do not establish that the harness improved.

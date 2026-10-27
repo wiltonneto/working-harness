@@ -18,6 +18,8 @@ Read [STATE.md](STATE.md), [priorities.md](priorities.md), recent [session-log.m
 | Deferred work with a trigger | [PARKING_LOT.md](PARKING_LOT.md) |
 | Product authority and paths | [PRODUCTS.md](PRODUCTS.md) |
 | Daily cycle | [OPERATING_SYSTEM.md](OPERATING_SYSTEM.md) |
+| Failure classes -> verified improvement | [Learning loop](system/learning-loop.md), [error-entry body](templates/error-entry.md) |
+| Optional external evening/morning jobs | [Job contracts](system/jobs/README.md); disabled until configured and authorized |
 
 ## Handoff
 
@@ -32,3 +34,7 @@ Read each incoming receipt and product as-built. Re-derive its claims against li
 Only this role ranks work. Product facts can correct the premise and report completion, but do not themselves close strategic hypotheses or reorder priorities.
 
 Close with the [session template](templates/session-close.md). Update the daily spine under a single writer. Keep explanations short enough to shape the next move.
+
+## Review and improve the harness
+
+Use the [learning loop](system/learning-loop.md) after failures and during authorized evening reviews. Logging is required; review must connect recurring classes to owned backlog work, enforcement, and verified outcomes. Recheck old premises before ranking them. CoS also selects deep research when a founder request or a current decision justifies the depth; use the research job contract's selection test rather than generating research for its own sake. No unattended work may expand its own authority.
